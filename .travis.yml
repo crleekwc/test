@@ -3,5 +3,14 @@ services:
   - docker
 
 script:
-  - docker build -t crleekwc/node .
-  - docker images crleekwc/node
+  - docker build -t crleekwc84/node .
+  - docker images crleekwc84/node
+
+before_deploy:
+  - docker login -u crleekwc84 -p misrev-zoRfo8-juqnaf
+
+deploy:
+  provider: script
+  script: docker push crleekwc84/node
+  on:
+    branch: master
